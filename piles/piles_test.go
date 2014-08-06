@@ -106,7 +106,7 @@ var spillTests = []struct {
 		},
 	},
 	{
-		"Overflow 4, Vertical Wrap",
+		"Overflow 4, Vertical Wrap - Up",
 		[]string{
 			"040",
 			"000",
@@ -121,6 +121,42 @@ var spillTests = []struct {
 			"101",
 			"010",
 			"010",
+		},
+	},
+	{
+		"Overflow 4, Vertical Wrap - Down",
+		[]string{
+			"000",
+			"000",
+			"040",
+		},
+		image.Pt(1, 2),
+		&Config{
+			Wrap:         true,
+			Connectivity: Four,
+		},
+		[]string{
+			"010",
+			"010",
+			"101",
+		},
+	},
+	{
+		"Complex Case 1",
+		[]string{
+			"400",
+			"354",
+			"901",
+		},
+		image.Pt(0, 2),
+		&Config{
+			Wrap:         true,
+			Connectivity: Eight,
+		},
+		[]string{
+			"511",
+			"465",
+			"112",
 		},
 	},
 }

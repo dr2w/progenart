@@ -27,8 +27,8 @@ func NewFromStrings(strings []string) *image.Gray16 {
 func ToSimpleString(img *image.Gray16) string {
 	var buffer bytes.Buffer
 	bounds := img.Bounds()
-	for x := bounds.Min.X; x < bounds.Max.X; x++ {
-		for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
+	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
+		for x := bounds.Min.X; x < bounds.Max.X; x++ {
 			v, _, _, _ := img.At(x, y).RGBA()
 			buffer.WriteString(fmt.Sprintf("%d", v))
 		}

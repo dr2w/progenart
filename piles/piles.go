@@ -59,14 +59,16 @@ func (c *Config) spill(p image.Point, img *image.Gray16) (*image.Gray16, bool) {
 			if !c.Wrap {
 				continue
 			}
-			switch {
-			case nbr.X < bounds.Min.X:
+			if nbr.X < bounds.Min.X {
 				nbr.X = bounds.Max.X - 1
-			case nbr.X >= bounds.Max.X:
+			}
+			if nbr.X >= bounds.Max.X {
 				nbr.X = bounds.Min.X
-			case nbr.Y < bounds.Min.Y:
+			}
+			if nbr.Y < bounds.Min.Y {
 				nbr.Y = bounds.Max.Y - 1
-			case nbr.Y >= bounds.Max.Y:
+			}
+			if nbr.Y >= bounds.Max.Y {
 				nbr.Y = bounds.Min.Y
 			}
 		}
