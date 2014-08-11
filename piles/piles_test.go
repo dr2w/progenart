@@ -8,6 +8,46 @@ import (
 	"dr2w.com/progenart/img"
 )
 
+var resolveTests = []struct {
+	name   string
+	config *Config
+	input  []string
+	output []string
+}{
+	{
+		"Basic 4",
+		&Config{
+			Wrap:         false,
+			Connectivity: Four,
+		},
+		[]string{
+			"00000",
+			"00100",
+			"00820",
+			"00000",
+			"00000",
+		},
+		[]string{
+			"00000",
+			"00310",
+			"02101",
+			"00210",
+			"00000",
+		},
+	},
+}
+
+func TestResolve(t *testing.T) {
+	for _, test := range resolveTests {
+		input := img.NewFromStrings(test.input)
+		want := img.NewFromStrings(test.output)
+		if got := test.config.Resolve(input); !reflect.DeepEqual(got, want) {
+			t.Errorf("%s:\ngot:\n%s\nwant:\n%s\n", test.name, img.ToSimpleString(got), img.ToSimpleString(want))
+		}
+
+	}
+}
+
 var spillTests = []struct {
 	name   string
 	input  []string
